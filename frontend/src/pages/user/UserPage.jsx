@@ -5,10 +5,8 @@ import UserForm from "./UserForm";
 import UserList from "./UserList";
 import { Banner, Button, ConfirmDialog, Input } from "../../components/common";
 import { createUser, deleteUser, listUsers, updateUser } from "../../api/users";
-import { useAuth } from "../../auth/useAuth";
 
 export default function UserPage() {
-  const { user, logout } = useAuth();
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(null);
@@ -85,17 +83,9 @@ export default function UserPage() {
 
   return (
     <main className="user-page">
-      <header className="page-header">
-        <div>
-          <h1>PDFQueryBot — Users</h1>
-          <p>Manage application users (create, read, update, delete).</p>
-        </div>
-        <div className="user-menu">
-          {user && <span className="who">{user.username}</span>}
-          <Button variant="secondary" onClick={logout}>
-            Logout
-          </Button>
-        </div>
+      <header>
+        <h1>Users</h1>
+        <p>Manage application users (create, read, update, delete).</p>
       </header>
 
       <Banner type={message?.type} onDismiss={() => setMessage(null)}>
